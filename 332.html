@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>SC SERENDIPITY 9:9 전술 운용 지침서 (3-3-2)</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: #080d1a;
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: #f8fafc;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .app-container {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    max-width: 440px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #0f172a;
+    overflow: hidden;
+  }
+
+  .slide-viewport {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+    touch-action: pan-y;
+  }
+
+  .slide-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  .slide {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 14px 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .slide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 5px;
+    margin-bottom: 6px;
+    flex-shrink: 0;
+  }
+  .tag {
+    background: #facc15;
+    color: #0f172a;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .slide-index {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #94a3b8;
+  }
+  h1 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 2px;
+    word-break: keep-all;
+    flex-shrink: 0;
+  }
+  .sub {
+    font-size: 11.5px;
+    color: #fde047;
+    margin-bottom: 8px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 2px;
+  }
+
+  /* 01 표지 전용 */
+  .cover-hero {
+    background: radial-gradient(circle at 50% 30%, #1e293b 0%, #090e17 100%);
+    border: 1.5px solid rgba(250, 204, 21, 0.45);
+    border-radius: 16px;
+    padding: 16px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+    flex-shrink: 0;
+  }
+  .cover-crest-wrap {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 3px solid #facc15;
+    background: #111827;
+    margin-bottom: 8px;
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.45);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .cover-crest-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cover-badge-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .cover-pill {
+    background: rgba(250, 204, 21, 0.15);
+    border: 1px solid rgba(250, 204, 21, 0.5);
+    color: #facc15;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 1px 6px;
+    border-radius: 9999px;
+  }
+  .cover-team-main {
+    font-size: 24px;
+    font-weight: 950;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .cover-team-main span {
+    color: #38bdf8;
+    background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cover-sub-title {
+    font-size: 14px;
+    font-weight: 900;
+    color: #facc15;
+    margin-bottom: 2px;
+  }
+  .cover-desc {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .spec-item {
+    background: #141f33;
+    border: 1px solid #23334d;
+    border-radius: 6px;
+    padding: 7px 4px;
+    text-align: center;
+  }
+  .spec-label {
+    font-size: 9.5px;
+    color: #64748b;
+    font-weight: 600;
+  }
+  .spec-val {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #38bdf8;
+    margin-top: 1px;
+  }
+
+  .toc-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 10px 12px;
+    flex-shrink: 0;
+  }
+  .toc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .toc-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #facc15;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .toc-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #334155;
+    border-radius: 5px;
+    padding: 6px 9px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toc-num {
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+  .toc-name {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #e2e8f0;
+  }
+  .toc-desc {
+    font-size: 10px;
+    color: #94a3b8;
+  }
+
+  /* 피치 다이어그램 전용 스타일 */
+  .pitch-container {
+    width: 100%;
+    background: linear-gradient(180deg, #093824 0%, #064e3b 50%, #093824 100%);
+    border: 1.5px solid #10b981;
+    border-radius: 12px;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
+  .pitch-svg-wrap {
+    width: 100%;
+    max-height: 240px;
+  }
+  .pitch-svg-wrap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .pitch-legend-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    width: 100%;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(255,255,255,0.15);
+  }
+  .legend-item {
+    font-size: 10px;
+    color: #ecfdf5;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .legend-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* 설명 카드 & 불릿 */
+  .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 10px 12px;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #38bdf8;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .card-desc {
+    font-size: 12px;
+    color: #e2e8f0;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  li {
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.45;
+    position: relative;
+    padding-left: 12px;
+    word-break: keep-all;
+  }
+  li::before {
+    content: "•";
+    position: absolute;
+    left: 1px;
+    color: #38bdf8;
+    font-weight: bold;
+  }
+  li strong {
+    color: #fde047;
+  }
+
+  /* 핵심 집중 목표 전용 */
+  .focus-hero-box {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(15, 23, 42, 0.6) 100%);
+    border: 2px solid #facc15;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(234, 179, 8, 0.25);
+    flex-shrink: 0;
+  }
+  .focus-hero-title {
+    font-size: 19px;
+    font-weight: 950;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 3px;
+    letter-spacing: -0.3px;
+  }
+  .focus-hero-title span {
+    color: #fde047;
+    text-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
+  }
+  .focus-hero-desc {
+    font-size: 11.5px;
+    color: #93c5fd;
+    font-weight: 700;
+  }
+  .focus-card-major {
+    background: #1e293b;
+    border: 1.5px solid #38bdf8;
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+  }
+  .focus-card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .focus-order-badge {
+    background: #facc15;
+    color: #0f172a;
+    font-size: 11px;
+    font-weight: 950;
+    padding: 2px 7px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .focus-card-main-title {
+    font-size: 13.5px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+  }
+
+  /* 네비게이션 컨트롤러 */
+  .nav-bar {
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 17, 32, 1) 100%);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 14px;
+    flex-shrink: 0;
+    z-index: 50;
+  }
+  .nav-btn {
+    background: linear-gradient(135deg, #fde047 0%, #eab308 100%);
+    color: #0f172a;
+    border: 1px solid #fef08a;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(234, 179, 8, 0.35);
+    transition: all 0.1s ease;
+  }
+  .nav-btn:active {
+    transform: scale(0.95);
+    background: #ca8a04;
+  }
+  .nav-btn:disabled {
+    background: #1e293b;
+    border-color: #334155;
+    color: #475569;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+  .page-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+  }
+  .page-num {
+    font-size: 13.5px;
+    font-weight: 900;
+    color: #facc15;
+  }
+  .swipe-hint {
+    font-size: 9px;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="slide-viewport" id="viewport">
+    <div class="slide-track" id="track">
+
+      <!-- 01 표지 -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag">SC SERENDIPITY</span>
+          <span class="slide-index">01 / 08</span>
+        </div>
+        
+        <div class="content">
+          <div class="cover-hero">
+            <div class="cover-crest-wrap">
+              <img src="logo.png" alt="SC SERENDIPITY 로고" onerror="this.src='https://via.placeholder.com/300/1e293b/facc15?text=SERENDIPITY'">
+            </div>
+            <div class="cover-badge-row">
+              <span class="cover-pill">MATCH TACTICS</span>
+              <span class="cover-pill">9 vs 9 MATCH</span>
+            </div>
+            <div class="cover-team-main">SC <span>SERENDIPITY</span></div>
+            <div class="cover-sub-title">9:9 전술 운용 지침서</div>
+            <div class="cover-desc">38m × 66m 종방향 구장 맞춤 포지션별 행동 지침</div>
+          </div>
+
+          <div class="spec-grid">
+            <div class="spec-item">
+              <div class="spec-label">포메이션</div>
+              <div class="spec-val">3-1-2-2 (3-3-2)</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">구장 규격</div>
+              <div class="spec-val">38m × 66m</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">전술 코어</div>
+              <div class="spec-val">투톱 스위칭 & 45° CB</div>
+            </div>
+          </div>
+
+          <div class="toc-card">
+            <div class="toc-header">
+              <span class="toc-title">📋 전술 가이드 구성 요약</span>
+              <span style="font-size:10px; color:#38bdf8; font-weight:700;">8 SLIDES</span>
+            </div>
+            <div class="toc-list">
+              <div class="toc-item">
+                <span class="toc-num">01-02</span>
+                <span class="toc-name">기본 배치 다이어그램</span>
+                <span class="toc-desc">피치 맵 · 포지션별 롤</span>
+              </div>
+              <div class="toc-item">
+                <span class="toc-num">03</span>
+                <span class="toc-name">FW 전술 다이어그램</span>
+                <span class="toc-desc">투톱 스위칭 & 1번 침투 후 1:1</span>
+              </div>
+              <div class="toc-item">
+                <span class="toc-num">04</span>
+                <span class="toc-name">WM 전술 다이어그램</span>
+                <span class="toc-desc">안쪽 포켓 공간 수령 & 전환</span>
+              </div>
+              <div class="toc-item">
+                <span class="toc-num">05-08</span>
+                <span class="toc-name">3선 및 후방 지침</span>
+                <span class="toc-desc">VOL ➔ WB ➔ CB ➔ 핵심 과제</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 필드 포메이션 다이어그램 & 전체 핵심 요약 -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag">PITCH MAP & SUMMARY</span>
+          <span class="slide-index">02 / 08</span>
+        </div>
+        <h1>9:9 필드 배치 및 핵심 요약</h1>
+        <div class="sub">38m × 66m 맞춤 3-1-2-2 대형 & 핵심 포인트 정리</div>
+        <div class="content">
+          <!-- 02 필드 포메이션 다이어그램 SVG 교체 코드 -->
+<!-- 02 필드 포메이션 다이어그램 SVG 교체 코드 -->
+<div class="pitch-container">
+  <div class="pitch-svg-wrap">
+    <svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow-yellow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#facc15" />
+        </marker>
+      </defs>
+
+      <!-- 피치 라인 -->
+      <rect x="15" y="10" width="350" height="280" rx="8" fill="none" stroke="#22c55e" stroke-width="2" opacity="0.8"/>
+      <line x1="15" y1="150" x2="365" y2="150" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+      <circle cx="190" cy="150" r="28" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.6"/>
+      <circle cx="190" cy="150" r="2" fill="#22c55e"/>
+
+      <rect x="110" y="10" width="160" height="42" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.5"/>
+      <rect x="110" y="248" width="160" height="42" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.5"/>
+
+      <!-- 수비/미드필더 가이드 점선 -->
+      <line x1="190" y1="278" x2="235" y2="238" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <line x1="235" y1="238" x2="190" y2="175" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <line x1="190" y1="278" x2="190" y2="175" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 2" opacity="0.4"/>
+      
+      <line x1="95" y1="145" x2="190" y2="175" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7"/>
+      <line x1="285" y1="145" x2="190" y2="175" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7"/>
+
+      <!-- 투톱 동선 화살표 -->
+      <!-- 1) 침투FW: 사이드 1번 지역(코너/터치라인 전방 깊숙한 곳)을 향해 뻗어가는 화살표 -->
+      <path d="M 120 42 Q 85 28 50 20" fill="none" stroke="#facc15" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#arrow-yellow)"/>
+
+      <!-- 2) 공미FW: 미드필더 지원을 위해 3~5m 아래로 드롭다운하는 화살표 -->
+      <path d="M 215 105 Q 205 125 195 132" fill="none" stroke="#facc15" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#arrow-yellow)"/>
+
+      <!-- 선수 노드 -->
+      <!-- 왼쪽 위: 침투FW -->
+      <g transform="translate(130, 52)">
+        <circle cx="0" cy="0" r="14" fill="#ea580c" stroke="#fed7aa" stroke-width="1.5"/>
+        <text x="0" y="4" font-size="9.5" font-weight="900" fill="#fff" text-anchor="middle">침투FW</text>
+      </g>
+
+      <!-- 중앙 아래: 공미FW -->
+      <g transform="translate(220, 96)">
+        <circle cx="0" cy="0" r="14" fill="#ea580c" stroke="#facc15" stroke-width="2"/>
+        <text x="0" y="4" font-size="9.5" font-weight="900" fill="#fff" text-anchor="middle">공미FW</text>
+      </g>
+
+      <!-- MF 3명 -->
+      <g transform="translate(95, 145)">
+        <circle cx="0" cy="0" r="13" fill="#0284c7" stroke="#bae6fd" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">LWM</text>
+      </g>
+      <g transform="translate(190, 175)">
+        <circle cx="0" cy="0" r="14" fill="#6366f1" stroke="#fde047" stroke-width="2"/>
+        <text x="0" y="4" font-size="9.5" font-weight="900" fill="#fff" text-anchor="middle">VOL</text>
+      </g>
+      <g transform="translate(285, 145)">
+        <circle cx="0" cy="0" r="13" fill="#0284c7" stroke="#bae6fd" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">RWM</text>
+      </g>
+
+      <!-- DF 3백 -->
+      <g transform="translate(70, 225)">
+        <circle cx="0" cy="0" r="13" fill="#16a34a" stroke="#bbf7d0" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">LWB</text>
+      </g>
+      <g transform="translate(235, 238)">
+        <circle cx="0" cy="0" r="13" fill="#16a34a" stroke="#facc15" stroke-width="2"/>
+        <text x="0" y="3.5" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">CB</text>
+        <text x="18" y="4" font-size="8.5" font-weight="900" fill="#facc15">45°</text>
+      </g>
+      <g transform="translate(310, 225)">
+        <circle cx="0" cy="0" r="13" fill="#16a34a" stroke="#bbf7d0" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">RWB</text>
+      </g>
+
+      <!-- GK -->
+      <g transform="translate(190, 278)">
+        <circle cx="0" cy="0" r="12" fill="#ca8a04" stroke="#fef08a" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#0f172a" text-anchor="middle">GK</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="pitch-legend-grid">
+    <div class="legend-item"><span class="legend-dot" style="background:#ea580c;"></span>투톱: 사이드 1번 침투 ↔ 공미 드롭</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#6366f1;"></span>볼란치: V자 하단 위치 / 좌우 전환 조율</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#0284c7;"></span>윙어: 하프스페이스 상주 / 사이드 공급</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#facc15;"></span>CB: GK·볼란치와 45° 대각선 각도 유지</div>
+  </div>
+</div>
+
+          <!-- 하단 전체 핵심 요약 카드 -->
+          <div class="card" style="margin-top:2px;">
+            <div class="card-title">📌 전술 핵심 요약 가이드</div>
+            <ul>
+              <li><strong>FW (투톱):</strong> 1번 침투 톱은 즉각적인 크로스보다 볼 소유/1:1 돌파/컷백을 보고, 반대 톱은 3~5m 내려와 공미 역할을 하며 서로 스위칭합니다[cite: 4].</li>
+              <li><strong>WM (윙어):</strong> 빌드업 시 사이드에 붙지 않고 안쪽 빈 공간(포켓)에서 받으며, 1번으로 볼이 가면 사이드로 벌려 리턴 패스 각을 열어줍니다[cite: 4].</li>
+              <li><strong>VOL (수미):</strong> 양 윙어와 V자를 이루며 센터서클 부근에서 홀딩, 좌우 수평 전환 셔틀에 집중합니다[cite: 4].</li>
+              <li><strong>WB & CB (후방):</strong> 윙백은 오버랩을 자제하고 수미의 백패스 탈압박을 지원하며, 센터백은 GK와 45도 각도에서 안전한 땅볼(또는 과감한 롱킥)을 전개합니다[cite: 4].</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 FW (투톱) 지침 (RWM 지원 화살표를 더 사이드로 벌림) -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag">POSITION: FW</span>
+          <span class="slide-index">03 / 08</span>
+        </div>
+        <h1>투톱(FW) 지침: 스위칭 & 1번 침투</h1>
+        <div class="sub">공미와 사이드 침투 상호 교대 및 1번 공간 점유 후 마무리</div>
+        <div class="content">
+          <!-- 03 FW 슬라이드 내부의 pitch-container SVG 부분 교체 코드 -->
+<div class="pitch-container">
+  <div class="pitch-svg-wrap" style="max-height:185px;">
+    <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+        </marker>
+        <marker id="arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#f87171" />
+        </marker>
+        <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#facc15" />
+        </marker>
+      </defs>
+
+      <!-- 피치 라인 -->
+      <rect x="15" y="10" width="350" height="180" rx="8" fill="none" stroke="#22c55e" stroke-width="2" opacity="0.8"/>
+      <rect x="110" y="10" width="160" height="55" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="28" fill="none" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.4"/>
+
+      <!-- Zone 1 구역 표시 -->
+      <rect x="265" y="15" width="90" height="80" rx="6" fill="#ea580c" fill-opacity="0.15" stroke="#ea580c" stroke-width="1.2" stroke-dasharray="3 2"/>
+      <text x="310" y="32" font-size="9.5" font-weight="900" fill="#fb923c" text-anchor="middle">Zone 1 (공략 공간)</text>
+
+      <!-- 1) 침투 톱의 상대 CB 뒷공간 배후 침투 및 안쪽 돌파선 (수비 뒤쪽 깊은 곳으로 이동) -->
+      <path d="M 305 52 Q 280 20 225 28" fill="none" stroke="#f87171" stroke-width="2.2" marker-end="url(#arrow-red)"/>
+
+      <!-- 2) 컷백 옵션선 (공미 톱 방향) -->
+      <path d="M 298 68 Q 240 78 192 98" fill="none" stroke="#facc15" stroke-width="1.5" stroke-dasharray="2 2" marker-end="url(#arrow-gold)"/>
+
+      <!-- 3) RWM: 사이드라인으로 넓게 벌려 돌아 지원하는 단일 화살표 -->
+      <path d="M 292 145 Q 355 115 348 65" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arrow-blue)"/>
+      <text x="350" y="112" font-size="8" font-weight="800" fill="#38bdf8" text-anchor="middle">사이드 벌려 지원</text>
+
+      <!-- 노드: RWM -->
+      <g transform="translate(285, 155)">
+        <circle cx="0" cy="0" r="12" fill="#0284c7" stroke="#fff" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">RWM</text>
+      </g>
+
+      <!-- 노드: 침투FW -->
+      <g transform="translate(305, 60)">
+        <circle cx="0" cy="0" r="13" fill="#ea580c" stroke="#fed7aa" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">침투FW</text>
+      </g>
+
+      <!-- 노드: 상대CB -->
+      <g transform="translate(255, 48)">
+        <rect x="-9" y="-8" width="18" height="16" rx="3" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+        <text x="0" y="4" font-size="8" font-weight="800" fill="#f1f5f9" text-anchor="middle">상대CB</text>
+      </g>
+
+      <!-- 노드: 공미FW -->
+      <g transform="translate(180, 105)">
+        <circle cx="0" cy="0" r="13" fill="#ea580c" stroke="#facc15" stroke-width="2"/>
+        <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">공미FW</text>
+      </g>
+      <text x="180" y="127" font-size="8" font-weight="800" fill="#fde047" text-anchor="middle">(2선 지원 및 컷백 수령)</text>
+
+      <!-- 노드: LWM -->
+      <g transform="translate(95, 150)">
+        <circle cx="0" cy="0" r="12" fill="#0284c7" stroke="#bae6fd" stroke-width="1.5"/>
+        <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">LWM</text>
+      </g>
+      <path d="M 95 138 Q 120 90 150 55" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrow-blue)"/>
+    </svg>
+  </div>
+</div>
+
+          <div class="card">
+  <div class="card-title">1. 침투 톱: 1번 공간 소유 & 템포 조절 후 마무리</div>
+  <ul>
+    <li><strong>즉각적인 크로스 지양:</strong> 1번 공간에서 볼을 잡았을 때 박스 안으로 무리하게 바로 올리지 않습니다. 파트너가 2선에 있으므로 동료들이 올라올 시간을 벌어주는 것이 우선입니다.</li>
+    <li><strong>소유 및 지원 연계:</strong> 2선에서 접근하는 <strong>공미 톱이나 사이드로 벌려 올라온 윙어</strong>에게 내주는 플레이를 먼저 봅니다.</li>
+    <li><strong>박스 진입 시 선택지:</strong> 소유가 힘들면 안쪽으로 더 치고 들어가 <strong>45도 컷백</strong>을 내주거나, 반대편에서 쇄도하는 <strong>반대 윙어를 겨냥해 길게 넘겨줍니다.</strong></li>
+    <li><strong>엔드라인 돌파 시 확실한 마무리:</strong> 코너 플래그/엔드라인 부근까지 깊게 파고들었다면  <strong>과감하게 1:1을 시도하되, 마무리를 짓고</strong> 수비 복귀 시간을 확보합니다.</li>
+  </ul>
+</div>
+
+          <div class="card">
+            <div class="card-title">2. 반대 톱: 공미 드롭다운 및 상호 스위칭</div>
+            <ul>
+              <li><strong>3~5m 내려와 받아주기:</strong> 수비 라인에 서 있기보다 3~5m 내려와 공미 위치에서 미드필더진의 패스를 수령하도록 합니다.</li>
+              <li><strong>역할 맞교대:</strong> 볼이 반대로 전환되면 사이드로 빠졌던 선수가 내려오고, 내려왔던 선수가 전방 1번으로 침투하며 역할을 교대합니다.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">3. 골키퍼 롱킥 상황 시 행동</div>
+            <ul>
+              <li><strong>키 큰 톱:</strong> 수비보다 3~5m 내려와 위치를 선점하고 헤더나 가슴으로 세컨볼을 떨궈줍니다.</li>
+              <li><strong>침투 톱:</strong> 대각선 뒤에서 대기하다가 낙하 시점에 맞춰 상대 배후 공간으로 즉시 쇄도합니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 WM (윙어) 지침 (텍스트 겹침 수정 & 금지 표시 삭제) -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag">POSITION: WM</span>
+          <span class="slide-index">04 / 08</span>
+        </div>
+        <h1>윙어(WM) 지침: 포켓 공간 & 사이드 지원</h1>
+        <div class="sub">빌드업 시 안쪽 공간 활용 및 1번 볼 투입 시 측면 지원</div>
+        <div class="content">
+          <div class="pitch-container">
+            <div class="pitch-svg-wrap" style="max-height:180px;">
+              <svg viewBox="0 0 380 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4ade80" />
+                  </marker>
+                </defs>
+
+                <rect x="15" y="10" width="350" height="160" rx="8" fill="none" stroke="#22c55e" stroke-width="1.8" opacity="0.7"/>
+                <line x1="15" y1="90" x2="365" y2="90" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.4"/>
+
+                <!-- 안쪽 빈 공간(포켓) 점선 박스 -->
+                <rect x="228" y="55" width="105" height="70" rx="8" fill="#38bdf8" fill-opacity="0.12" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <text x="280" y="73" font-size="9" font-weight="900" fill="#38bdf8" text-anchor="middle">안쪽 빈 공간 (포켓)</text>
+
+                <!-- 우리 볼란치 (VOL) -->
+                <g transform="translate(130, 125)">
+                  <circle cx="0" cy="0" r="14" fill="#6366f1" stroke="#fde047" stroke-width="2"/>
+                  <text x="0" y="4" font-size="9.5" font-weight="900" fill="#fff" text-anchor="middle">VOL</text>
+                </g>
+
+                <!-- 상대 수비 3명 (글씨와 겹치지 않게 위치 조정) -->
+                <g transform="translate(200, 52)">
+                  <rect x="-9" y="-8" width="18" height="16" rx="3" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+                  <text x="0" y="4" font-size="8" font-weight="800" fill="#f1f5f9" text-anchor="middle">상대</text>
+                </g>
+                <!-- 기존 텍스트와 겹치던 수비를 좌측 상단으로 이동 -->
+                <g transform="translate(185, 142)">
+                  <rect x="-9" y="-8" width="18" height="16" rx="3" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+                  <text x="0" y="4" font-size="8" font-weight="800" fill="#f1f5f9" text-anchor="middle">상대</text>
+                </g>
+                <g transform="translate(345, 95)">
+                  <rect x="-9" y="-8" width="18" height="16" rx="3" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+                  <text x="0" y="4" font-size="8" font-weight="800" fill="#f1f5f9" text-anchor="middle">상대</text>
+                </g>
+
+                <!-- 볼란치 -> 윙어 패스 연결선 -->
+                <path d="M 146 120 Q 200 115 260 102" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-dasharray="3 3" marker-end="url(#arrow-green)"/>
+
+                <!-- 우리 윙어 (RWM) - 포켓에서 수령 -->
+                <g transform="translate(280, 98)">
+                  <circle cx="0" cy="0" r="14" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                  <text x="0" y="4" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">RWM</text>
+                </g>
+                <!-- 겹침 없이 선명하게 배치된 하단 설명 -->
+                <text x="280" y="145" font-size="9" font-weight="900" fill="#fde047" text-anchor="middle">수미와 간격 유지하며 수령</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="card">
+    <div class="card-title">1. 빌드업 시: 수미·윙백과 삼각형 유지 & 포켓 수령</div>
+    <ul>
+      <li><strong>삼각형 패스망 유지:</strong> 사이드라인에 바짝 붙어있기보다는 수미(VOL), 윙백(WB)과 유기적으로 <strong>패스 삼각형 각도</strong>를 계속해서 만들어줍니다.</li>
+      <li><strong>안쪽 빈 공간(포켓) 활용:</strong> 상대 수비 블록 사이 안쪽 빈 공간으로 좁혀 들어와 편안하게 공을 받아주고 안정적으로 동료에게 내어줍니다.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2. 역습 및 1번 공간 투입 시: 역할별 움직임</div>
+    <ul>
+      <li><strong>볼 방향 윙어 (사이드 지원):</strong> 볼이 1번 공간 공격수에게 연결되어 지원을 갈 때는 <strong>사이드라인 쪽으로 넓게 벌려 내려와 안전한 리턴 패스 각</strong>을 확보해줍니다.</li>
+      <li><strong>반대편 윙어 (빈 공간 침투):</strong> 역습이 전개되거나 반대편 1번 공간으로 볼이 투입되면, <strong>중앙 아크 또는 페널티 박스 안 빈 공간으로 과감하게 대각선 쇄도</strong>하여 컷백이나 세컨볼 마무리를 준비합니다.</li>
+      <li><strong>방향 전환 시:</strong> 반대편에서 볼이 넘어올 경우 크게 돌아서 전방 1번(사이드 앞 공간)으로 빠르게 연결해줍니다.</li>
+    </ul>
+  </div>
+        </div>
+      </div>
+
+      <!-- 05 VOL (수비형 미드필더) 지침 -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag">POSITION: VOL</span>
+          <span class="slide-index">05 / 08</span>
+        </div>
+        <h1>수비형 미드필더(VOL) 지침</h1>
+        <div class="sub">V자 하단 앵커 & 수평 전환·수비 셔틀</div>
+        <!-- 05 VOL 슬라이드 content 교체 코드 -->
+<div class="content">
+  <!-- 볼란치 V자 및 윙백-윙어 삼각형 다이어그램 -->
+  <div class="pitch-container">
+    <div class="pitch-svg-wrap" style="max-height:190px;">
+      <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+          </marker>
+        </defs>
+
+        <!-- 피치 라인 -->
+        <rect x="15" y="10" width="350" height="180" rx="8" fill="none" stroke="#22c55e" stroke-width="1.8" opacity="0.7"/>
+        <line x1="15" y1="75" x2="365" y2="75" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.4"/>
+        <circle cx="190" cy="105" r="32" fill="none" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.4"/>
+
+        <!-- 1) 좌·우 트라이앵글 영역 면 채움 (연한 하늘색/보라색) -->
+        <polygon points="190,110 95,70 70,155" fill="#38bdf8" fill-opacity="0.12"/>
+        <polygon points="190,110 285,70 310,155" fill="#38bdf8" fill-opacity="0.12"/>
+
+        <!-- 2) 삼각형 패스 연결선 (실선/점선) -->
+        <!-- 좌측 삼각형: VOL - LWM - LWB -->
+        <line x1="190" y1="110" x2="95" y2="70" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="3 2"/>
+        <line x1="190" y1="110" x2="70" y2="155" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="3 2"/>
+        <line x1="95" y1="70" x2="70" y2="155" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="3 2" opacity="0.6"/>
+
+        <!-- 우측 삼각형: VOL - RWM - RWB -->
+        <line x1="190" y1="110" x2="285" y2="70" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="3 2"/>
+        <line x1="190" y1="110" x2="310" y2="155" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="3 2"/>
+        <line x1="285" y1="70" x2="310" y2="155" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="3 2" opacity="0.6"/>
+
+        <!-- 3) 양 윙어와 이루는 V자 형태 강조선 (노란색) -->
+        <path d="M 95 70 L 190 110 L 285 70" fill="none" stroke="#facc15" stroke-width="2.2"/>
+        <text x="190" y="85" font-size="9" font-weight="900" fill="#facc15" text-anchor="middle">V자 연결고리</text>
+
+        <!-- 좌우 횡전환 양방향 화살표 -->
+        <path d="M 165 105 Q 190 96 215 105" fill="none" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+        <path d="M 215 115 Q 190 124 165 115" fill="none" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+
+        <!-- 선수 노드 배치 -->
+        <!-- LWM -->
+        <g transform="translate(95, 70)">
+          <circle cx="0" cy="0" r="13" fill="#0284c7" stroke="#fff" stroke-width="1.5"/>
+          <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">LWM</text>
+        </g>
+        <!-- RWM -->
+        <g transform="translate(285, 70)">
+          <circle cx="0" cy="0" r="13" fill="#0284c7" stroke="#fff" stroke-width="1.5"/>
+          <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">RWM</text>
+        </g>
+
+        <!-- LWB -->
+        <g transform="translate(70, 155)">
+          <circle cx="0" cy="0" r="13" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+          <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">LWB</text>
+        </g>
+        <!-- RWB -->
+        <g transform="translate(310, 155)">
+          <circle cx="0" cy="0" r="13" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+          <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">RWB</text>
+        </g>
+
+        <!-- VOL (센터서클 부근 앵커) -->
+        <g transform="translate(190, 110)">
+          <circle cx="0" cy="0" r="15" fill="#6366f1" stroke="#facc15" stroke-width="2.2"/>
+          <text x="0" y="4" font-size="10" font-weight="900" fill="#fff" text-anchor="middle">VOL</text>
+        </g>
+        <text x="190" y="140" font-size="8.5" font-weight="900" fill="#fde047" text-anchor="middle">센터서클 부근 홀딩</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">1. 양 윙어와 V자 형성: 패스 연결고리 역할</div>
+    <div class="card-desc">양 윙어(LWM, RWM)보다 살짝 아래에 위치해 <strong>V자 대형</strong>을 유지합니다. 한쪽 측면에서 압박을 받을 때 볼 흐름이 끊기지 않고 반대편 윙어에게 매끄럽게 넘어갈 수 있도록 중심 역할을 합니다.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2. 윙백·윙어와 지속적인 삼각 패스망 구축</div>
+    <ul>
+      <li><strong>좌우 삼각형 유지:</strong> 좌측(LWB-VOL-LWM)과 우측(RWB-VOL-RWM)에서 동료들의 움직임에 맞춰 계속해서 <strong>삼각형 패스 각도</strong>를 만들어줍니다.</li>
+      <li><strong>무리한 전진 자제:</strong> 상대 박스 부근까지 깊게 올라갈 필요 없이, <strong>센터서클 부근에서</strong> 역습 저지 및 안전한 볼 배급에 집중합니다.</li>
+      <li><strong>결대로 전환:</strong> 공을 받으면 불필요한 드리블을 줄이고, 원·투터치로 반대편 빈 공간으로 빠르게 길을 열어주도록 합니다.</li>
+    </ul>
+  </div>
+</div>
+      </div>
+
+      <!-- 06 WB (윙백) 지침 -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag">POSITION: WB</span>
+          <span class="slide-index">06 / 08</span>
+        </div>
+        <h1>윙백(WB) 지침</h1>
+        <div class="sub">오버래핑 자제 & 리턴 패스 각도 사수</div>
+        <!-- 06 WB 슬라이드 content 교체 코드 -->
+<div class="content">
+  <!-- 윙백 간격 조절 및 수미 탈압박 지원 다이어그램 -->
+  <div class="pitch-container">
+    <div class="pitch-svg-wrap" style="max-height:190px;">
+      <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#4ade80" />
+          </marker>
+          <marker id="arrow-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+          </marker>
+        </defs>
+
+        <!-- 피치 라인 -->
+        <rect x="15" y="10" width="350" height="180" rx="8" fill="none" stroke="#22c55e" stroke-width="1.8" opacity="0.7"/>
+        <line x1="15" y1="80" x2="365" y2="80" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.4"/>
+
+        <!-- 윙어와의 간격 표시선 (양방향 화살표 느낌) -->
+        <line x1="290" y1="78" x2="306" y2="136" stroke="#facc15" stroke-width="1.6" stroke-dasharray="3 2"/>
+        <text x="325" y="108" font-size="8.5" font-weight="900" fill="#facc15" text-anchor="middle">일정 간격</text>
+
+        <!-- 상대의 수미 압박 표시 (붉은색 점선 화살표) -->
+        <g transform="translate(150, 85)">
+          <rect x="-8" y="-7" width="16" height="14" rx="2" fill="#475569" stroke="#f87171" stroke-width="1.2"/>
+          <text x="0" y="3.5" font-size="7.5" font-weight="800" fill="#f87171" text-anchor="middle">압박</text>
+        </g>
+        <path d="M 160 90 Q 170 96 178 100" fill="none" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>
+
+        <!-- 수미 -> 윙백 탈압박 비상구 패스선 -->
+        <path d="M 198 114 Q 250 135 295 146" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-dasharray="3 3" marker-end="url(#arrow-green)"/>
+        <text x="245" y="125" font-size="8.5" font-weight="900" fill="#4ade80" text-anchor="middle">백패스 지원</text>
+
+        <!-- 윙백의 대각선 뒤 이동 (패스 받기 쉬운 각도 확보) -->
+        <path d="M 315 165 Q 312 156 310 152" fill="none" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+
+        <!-- 오버래핑 자제 표시 (전방 진입 금지 느낌의 흐린 점선) -->
+        <path d="M 325 130 L 335 60" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2 2" opacity="0.5"/>
+        <text x="345" y="70" font-size="7.5" font-weight="800" fill="#94a3b8" text-anchor="middle">오버랩 지양</text>
+
+        <!-- 선수 노드 -->
+        <!-- RWM (앞선 윙어) -->
+        <g transform="translate(285, 70)">
+          <circle cx="0" cy="0" r="13" fill="#0284c7" stroke="#fff" stroke-width="1.5"/>
+          <text x="0" y="3.5" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">RWM</text>
+        </g>
+
+        <!-- VOL (압박받는 수미) -->
+        <g transform="translate(190, 105)">
+          <circle cx="0" cy="0" r="14" fill="#6366f1" stroke="#facc15" stroke-width="2"/>
+          <text x="0" y="4" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">VOL</text>
+        </g>
+
+        <!-- RWB (후방 지원 윙백) -->
+        <g transform="translate(310, 150)">
+          <circle cx="0" cy="0" r="14" fill="#16a34a" stroke="#facc15" stroke-width="2.2"/>
+          <text x="0" y="4" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">RWB</text>
+        </g>
+        <text x="300" y="176" font-size="8.5" font-weight="900" fill="#fde047" text-anchor="middle">대각선 뒤에서 대기</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">1. 오버래핑 지양 & 앞선 윙어와의 간격 조절</div>
+    <div class="card-desc">무리하게 터치라인 끝까지 올라가지 않고 수비 밸런스를 우선합니다. 앞선 윙어와 <strong>일정 간격</strong>을 유지하며 항상 뒤에서 안정적으로 받쳐주도록 합니다.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2. 수미 압박 시 탈압박 출구 위치 선점</div>
+    <ul>
+      <li><strong>주기 쉬운 위치로 이동:</strong> 중앙의 수미(볼란치)가 상대 압박을 받을 때, 당황하지 않고 편안하게 뒤나 대각선으로 내줄 수 있는 <strong>안전한 패스 길목</strong>을 먼저 찾아가 줍니다.</li>
+      <li><strong>시선 경기장 안쪽 유지:</strong> 몸을 안쪽으로 열어두어, 수미의 리턴 볼을 받는 즉시 빠르게 연결할 수 있는 자세를 갖춥니다.</li>
+      <li><strong>포지션 유지:</strong> 포지션을 이탈하지 않고 제 위치를 지켜줌으로써 수미가 볼을 유기적으로 돌릴 수 있게 지원합니다.</li>
+    </ul>
+  </div>
+</div>
+      </div>
+
+      <!-- 07 CB (센터백) 지침 -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag">POSITION: CB</span>
+          <span class="slide-index">07 / 08</span>
+        </div>
+        <h1>센터백(CB) 지침</h1>
+        <div class="sub">45° 대각선 각도 유지 & U자형 볼 배급</div>
+        <!-- 07 CB 슬라이드 content 교체 코드 -->
+<div class="content">
+  <!-- 센터백 45도 각도 및 빌드업 판단 다이어그램 -->
+  <!-- 07 CB 슬라이드 내 pitch-container 교체 코드 -->
+<div class="pitch-container">
+  <div class="pitch-svg-wrap" style="max-height:190px;">
+    <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#4ade80" />
+        </marker>
+        <marker id="arrow-yellow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#facc15" />
+        </marker>
+      </defs>
+
+      <!-- 피치 최후방 라인 -->
+      <rect x="15" y="10" width="350" height="180" rx="8" fill="none" stroke="#22c55e" stroke-width="1.8" opacity="0.7"/>
+      <rect x="110" y="145" width="160" height="45" fill="none" stroke="#22c55e" stroke-width="1.2" opacity="0.4"/>
+
+      <!-- 45도 삼각 패스망 면 채움 -->
+      <polygon points="190,175 235,115 190,45" fill="#38bdf8" fill-opacity="0.1"/>
+
+      <!-- 1) 45도 각도 패스선 (GK -> CB -> 수미) -->
+      <line x1="190" y1="175" x2="235" y2="115" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="3 2"/>
+      <path d="M 230 106 Q 212 75 195 54" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-dasharray="3 3" marker-end="url(#arrow-green)"/>
+      <!-- 1옵션 글자: 초록 점선 왼쪽 여백으로 이동 -->
+      <text x="160" y="82" font-size="8.5" font-weight="900" fill="#4ade80" text-anchor="middle">1옵션: 수미 땅볼</text>
+
+      <!-- 2) 압박 시 전방 롱킥 옵션선 -->
+      <path d="M 243 105 Q 268 62 265 25" fill="none" stroke="#facc15" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arrow-yellow)"/>
+      <!-- 2옵션 글자: 노란 화살표 오른쪽 여백으로 이동 -->
+      <text x="295" y="36" font-size="8.5" font-weight="900" fill="#facc15" text-anchor="start">2옵션: 롱킥</text>
+
+      <!-- 1자 배치 차단선 (X 표시) -->
+      <line x1="190" y1="165" x2="190" y2="58" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2 2" opacity="0.5"/>
+      <text x="180" y="132" font-size="7.5" font-weight="800" fill="#f87171" text-anchor="end">1자 패스 차단</text>
+
+      <!-- 상대 톱의 중앙 압박 노드 -->
+      <g transform="translate(190, 115)">
+        <rect x="-9" y="-8" width="18" height="16" rx="3" fill="#475569" stroke="#f87171" stroke-width="1.2"/>
+        <text x="0" y="4" font-size="8" font-weight="800" fill="#f87171" text-anchor="middle">상대톱</text>
+      </g>
+
+      <!-- 노드: GK -->
+      <g transform="translate(190, 175)">
+        <circle cx="0" cy="0" r="13" fill="#ca8a04" stroke="#fef08a" stroke-width="1.5"/>
+        <text x="0" y="4" font-size="8.5" font-weight="900" fill="#0f172a" text-anchor="middle">GK</text>
+      </g>
+
+      <!-- 노드: 수미 (VOL) -->
+      <g transform="translate(190, 45)">
+        <circle cx="0" cy="0" r="13" fill="#6366f1" stroke="#fde047" stroke-width="1.8"/>
+        <text x="0" y="4" font-size="8.5" font-weight="900" fill="#fff" text-anchor="middle">VOL</text>
+      </g>
+
+      <!-- 노드: 센터백 (CB - 45도 빈 공간 위치) -->
+      <g transform="translate(235, 115)">
+        <circle cx="0" cy="0" r="15" fill="#16a34a" stroke="#facc15" stroke-width="2.2"/>
+        <text x="0" y="4" font-size="10" font-weight="900" fill="#fff" text-anchor="middle">CB</text>
+      </g>
+      <!-- 45도 빈 공간 설명: 점선 아래로 확실하게 분리 -->
+      <text x="245" y="148" font-size="8.5" font-weight="900" fill="#fde047" text-anchor="middle">45° 빈 공간 확보</text>
+    </svg>
+  </div>
+</div>
+
+  <div class="card">
+    <div class="card-title">1. 빌드업 시: 상대 톱 압박을 피해 45° 각도 유지</div>
+    <div class="card-desc">상대 공격수의 압박을 피해 골대 바깥 빈 공간에서 <strong>키퍼와 수미 사이에서 45도 대각선 각도</strong>를 계속 열어주도록 합니다.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2. 빠른 압박 대처: 땅볼 연결 우선 & 롱킥 활용</div>
+    <ul>
+      <li><strong>수미에게 땅볼 전달이 1순위:</strong> 경기장이 좁아 상대 압박이 빠르게 들어오므로, 각도가 열리는 즉시 <strong>가장 안전한 땅볼 패스로 수미의 발밑</strong>에 넣어주는 것이 베스트입니다.</li>
+      <li><strong>무리하지 않고 과감한 롱킥:</strong> 상대 압박 타이밍이 빨라 수미에게 땅볼로 주기 여의치 않다면, 무리해서 공을 끌지 말고 <strong>전방 1번 공간이나 공격수를 향해 길게 차주어도 좋습니다.</strong></li>
+    </ul>
+  </div>
+</div>
+      </div>
+
+      <!-- 08 매치 당일 3대 핵심 과제 -->
+      <div class="slide">
+        <div class="slide-header">
+          <span class="tag" style="background:#fde047; color:#0f172a;">★ MUST DO</span>
+          <span class="slide-index">08 / 08</span>
+        </div>
+        
+        <div class="content">
+          <div class="focus-hero-box">
+            <div class="focus-hero-title">⚡ 경기 당일 <span>3대 핵심 집중 과제</span></div>
+            <div class="focus-hero-desc">경기 중 팀 전체가 약속하고 수행할 3가지 행동</div>
+          </div>
+
+          <div class="focus-card-major" style="border-color:#facc15;">
+            <div class="focus-card-title-row">
+              <span class="focus-order-badge">과제 01</span>
+              <span class="focus-card-main-title" style="color:#fde047;">FW: 1번 침투 후 1:1 돌파 & 유기적 스위칭</span>
+            </div>
+            <ul>
+              <li>1번 침투 톱은 <strong>대각선 안쪽으로 치고 들어가 1:1 돌파나 직접 슈팅</strong>을 시도합니다.</li>
+              <li>반대 톱은 <strong>3~5m 내려와 공미 역할</strong>을 수행하고, 볼 전환 시 역할을 즉시 맞교대합니다.</li>
+            </ul>
+          </div>
+
+          <div class="focus-card-major" style="border-color:#38bdf8;">
+            <div class="focus-card-title-row">
+              <span class="focus-order-badge" style="background:#38bdf8; color:#0f172a;">과제 02</span>
+              <span class="focus-card-main-title" style="color:#7dd3fc;">WM: 빌드업 시 안쪽 포켓, 1번 지원 시 사이드 밀착</span>
+            </div>
+            <ul>
+              <li>빌드업 시에는 <strong>수미와 간격을 두고 안쪽 빈 공간(포켓)</strong>에서 받도록 합니다.</li>
+              <li>1번으로 지원을 갈 때는 <strong>사이드에 붙어서 뒤로 내주는 리턴 패스 각</strong>을 만듭니다.</li>
+            </ul>
+          </div>
+
+          <div class="focus-card-major" style="border-color:#4ade80;">
+            <div class="focus-card-title-row">
+              <span class="focus-order-badge" style="background:#4ade80; color:#0f172a;">과제 03</span>
+              <span class="focus-card-main-title" style="color:#86efac;">CB & VOL & WB: 후방 밸런스 유지 및 45° 각도 사수</span>
+            </div>
+            <ul>
+              <li>센터백은 <strong>GK와 45도 대각선 위치</strong>에서 삼각형 패스망을 유지합니다.</li>
+              <li>볼란치와 윙백은 <strong>오버랩을 자제하고 후방에서 안정적인 전환과 리턴</strong>을 지원합니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 네비게이션 컨트롤러 -->
+  <div class="nav-bar">
+    <button class="nav-btn" id="prevBtn" disabled>◀ 이전</button>
+    <div class="page-box">
+      <span class="page-num" id="pageNum">01 / 08</span>
+      <span class="swipe-hint">좌우 스와이프</span>
+    </div>
+    <button class="nav-btn" id="nextBtn">다음 ▶</button>
+  </div>
+</div>
+
+<script>
+  let currentIdx = 0;
+  const track = document.getElementById('track');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageNum = document.getElementById('pageNum');
+  const viewport = document.getElementById('viewport');
+
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+
+  track.style.width = `${totalSlides * 100}%`;
+  slides.forEach(slide => {
+    slide.style.width = `${100 / totalSlides}%`;
+  });
+
+  function updateSlide(idx) {
+    currentIdx = Math.max(0, Math.min(idx, totalSlides - 1));
+    track.style.transform = `translateX(-${currentIdx * (100 / totalSlides)}%)`;
+    prevBtn.disabled = currentIdx === 0;
+    nextBtn.disabled = currentIdx === totalSlides - 1;
+    const curStr = String(currentIdx + 1).padStart(2, '0');
+    const totStr = String(totalSlides).padStart(2, '0');
+    pageNum.textContent = `${curStr} / ${totStr}`;
+    
+    const contents = document.querySelectorAll('.content');
+    contents.forEach(el => el.scrollTop = 0);
+  }
+
+  updateSlide(0);
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIdx > 0) updateSlide(currentIdx - 1);
+  });
+  nextBtn.addEventListener('click', () => {
+    if (currentIdx < totalSlides - 1) updateSlide(currentIdx + 1);
+  });
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+
+  viewport.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipeGesture();
+  }, { passive: true });
+
+  function handleSwipeGesture() {
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 35) {
+      if (deltaX < 0 && currentIdx < totalSlides - 1) {
+        updateSlide(currentIdx + 1);
+      } else if (deltaX > 0 && currentIdx > 0) {
+        updateSlide(currentIdx - 1);
+      }
+    }
+  }
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      if (currentIdx < totalSlides - 1) updateSlide(currentIdx + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      if (currentIdx > 0) updateSlide(currentIdx - 1);
+    }
+  });
+</script>
+</body>
+</html>
